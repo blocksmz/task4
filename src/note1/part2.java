@@ -1,4 +1,3 @@
-package note1;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
@@ -14,7 +13,7 @@ public class part2 {
 		
 		//input
 		Map<String,Integer> numcount=new HashMap<String,Integer>();
-		Pattern pat=Pattern.compile("\\b[A-Za-z][A-Za-z0-9]{3,}\\b");
+		Pattern pat=Pattern.compile("\\b[A-Za-z][A-Za-z0-9]*\\b");
 		
 		String filename="";
 		String keyWord="";
@@ -25,7 +24,6 @@ public class part2 {
 			if(args[i].equals("-f"))
 			{
 				filename+=args[i+1];
-				break;
 			}
 			else if(args[i].equals("-w"))
 			{
@@ -45,9 +43,9 @@ public class part2 {
 			while(tf)
 			{
 				String buffer=mth.group().toLowerCase();
-				if(keyWord.equals(buffer))
+				if(buffer.equals(keyWord.toLowerCase()))
 				{
-					count++;
+					count+=1;
 				}
 				tf=mth.find();
 			}
@@ -55,7 +53,7 @@ public class part2 {
 		in.close();
 		
 		//output
-		System.out.println("keyword "+keyWord+"occurred "+count+" times !");
+		System.out.println("keyword "+keyWord+" occurred "+count+" times !");
 		
 		}catch(FileNotFoundException e)
 		{
